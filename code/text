@@ -1,0 +1,50 @@
+/*
+24C02C外部储存模块
+##### 温度 ####
+0x00：温度上限    ox01：温度下限
+
+##### 投食 ####
+0x02：时  0x03：分  0x04：秒
+
+##### 充氧 ####
+0x05：时  0x06：分  0x07：秒
+
+##### 水循环 ####
+0x08：分  0x09: 秒
+*/
+
+//获取投食设置的时间
+delayms(5);
+h = At24c02Read(0x02);
+delayms(5);
+m = At24c02Read(0x03);
+delayms(5);
+s = At24c02Read(0x04);
+//获取充氧设置的时间
+delayms(5);
+h1 = At24c02Read(0x05);
+delayms(5);
+m1 = At24c02Read(0x06);
+delayms(5);
+s1 = At24c02Read(0x07); 
+delayms(5);
+
+//写入
+At24c02Write(0x00,temp_H);   //温度最低
+delayms(5);
+At24c02Write(0x01,temp_L);   //温度最高
+delayms(5);
+At24c02Write(0x02,F_h);   //自动投食：h
+delayms(5);
+At24c02Write(0x03,F_m);   //自动投食：m
+delayms(5);
+At24c02Write(0x04,F_s);   //自动投食：s
+delayms(5);
+At24c02Write(0x05,O_h);   //自动充氧：h
+delayms(5);
+At24c02Write(0x06,O_m);   //自动充氧：m
+delayms(5);
+At24c02Write(0x07,O_s);   //自动充氧：s
+delayms(5);
+At24c02Write(0x08,W_T);   //自动换水：s
+delayms(5);

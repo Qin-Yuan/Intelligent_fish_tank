@@ -1,0 +1,84 @@
+C51 COMPILER V9.54   CODE                                                                  04/01/2021 23:35:35 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN .\Objects\code.obj
+COMPILER INVOKED BY: E:\Kiel 5\C51\BIN\C51.EXE code.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\code.
+                    -lst) TABS(2) OBJECT(.\Objects\code.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5            
+   6          //定义ULN2003A的输入口
+   7          /*
+   8          sbit  IN0 = P1^7;
+   9          sbit  IN1 = P3^2;
+  10          sbit  IN2 = P2^4;
+  11          sbit  IN3 = P2^3;
+  12          */
+  13          sbit  IN0 = P2^3;
+  14          sbit  IN1 = P2^4;
+  15          sbit  IN2 = P3^2;
+  16          sbit  IN3 = P1^7;
+  17          
+  18          //正转一圈，time控制速度
+  19          void run_z(uint time)
+  20          {
+  21   1        uchar i;
+  22   1        for(i=0;i<1;i++)
+  23   1        {
+  24   2          
+  25   2          
+  26   2          IN0=0;IN1=0;IN2=1;IN3=0;delayms( time ); //0010
+  27   2          IN0=0;IN1=1;IN2=0;IN3=0;delayms( time ); //0100
+  28   2          IN0=1;IN1=0;IN2=0;IN3=0;delayms( time ); //1000
+  29   2          IN0=1;IN1=1;IN2=1;IN3=1;delayms( time ); //1111
+  30   2          //IN0=0;IN1=0;IN2=0;IN3=1;delayms( time ); //1000
+  31   2          //IN0=1;IN1=0;IN2=0;IN3=1;delayms( time ); //1001
+  32   2          //IN0=1;IN1=0;IN2=0;IN3=0;delayms( time ); //0001
+  33   2          //IN0=1;IN1=1;IN2=0;IN3=0;delayms( time ); //0011
+  34   2          
+  35   2        };
+  36   1      }
+  37          
+  38          //反转一圈，time控制速度
+  39          void run_f(uint time)
+  40          {
+  41   1          IN0=1;IN1=0;IN2=0;IN3=0;delayms( time ); //1000
+  42   1          IN0=1;IN1=1;IN2=0;IN3=0;delayms( time ); //0100
+  43   1          IN0=0;IN1=1;IN2=0;IN3=0;delayms( time ); //0010
+  44   1          IN0=0;IN1=1;IN2=1;IN3=0;delayms( time ); //1111
+  45   1          IN0=0;IN1=0;IN2=1;IN3=0;delayms( time ); //0100
+  46   1          IN0=0;IN1=0;IN2=1;IN3=1;delayms( time ); //0110
+  47   1          IN0=0;IN1=0;IN2=0;IN3=1;delayms( time ); //0010          //
+  48   1          IN0=1;IN1=0;IN2=0;IN3=1;delayms( time ); //0011
+  49   1      }
+  50          
+  51          //测试
+  52          void main()
+  53          {
+  54   1        while(1)
+C51 COMPILER V9.54   CODE                                                                  04/01/2021 23:35:35 PAGE 2   
+
+  55   1        {
+  56   2         run_f(1);
+  57   2        }
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    169    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

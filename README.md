@@ -47,6 +47,5 @@ Proteus仿真软件实现，但是温度传感器等无法在仿真中模拟采�
 # github项目地址
 https://github.com/Qin-Yuan/Intelligent_fish_tank
 # gitee项目地址
-
-
+https://gitee.com/QY_Benny/Intelligent_fish_tank
 ```
